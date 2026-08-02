@@ -64,4 +64,69 @@
 #include <iomanip>
 #include <string>
 using namespace std;
+#include <iostream>
+#include <iomanip>
+using namespace std;
 
+const int MAX_SIZE = 10;
+
+// Reads an M x N matrix from user input
+void readMatrix(int matrix[MAX_SIZE][MAX_SIZE], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cout << "Enter element [" << i << "][" << j << "]: ";
+            cin >> matrix[i][j];
+        }
+    }
+}
+
+// Displays a matrix in a neat, aligned grid
+void displayMatrix(int matrix[MAX_SIZE][MAX_SIZE], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cout << setw(5) << matrix[i][j];
+        }
+        cout << endl;
+    }
+}
+
+// PART A: Computes the transpose of an M x N matrix (result is N x M)
+void transposeMatrix(int matrix[MAX_SIZE][MAX_SIZE], int rows, int cols,
+                      int result[MAX_SIZE][MAX_SIZE]) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            result[j][i] = matrix[i][j];
+        }
+    }
+}
+
+// PART B: Adds two matrices of the same size (M x N)
+void addMatrices(int a[MAX_SIZE][MAX_SIZE], int b[MAX_SIZE][MAX_SIZE],
+                  int rows, int cols, int result[MAX_SIZE][MAX_SIZE]) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            result[i][j] = a[i][j] + b[i][j];
+        }
+    }
+}
+
+// PART C: Multiplies matrix A (M x N) by matrix B (N x P), result is M x P
+void multiplyMatrices(int a[MAX_SIZE][MAX_SIZE], int b[MAX_SIZE][MAX_SIZE],
+                       int m, int n, int p, int result[MAX_SIZE][MAX_SIZE]) {
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < p; j++) {
+            result[i][j] = 0;
+            for (int k = 0; k < n; k++) {
+                result[i][j] += a[i][k] * b[k][j];
+            }
+        }
+    }
+}
+
+int main() {
+    int choice;
+
+    cout << "Matrix Operations Menu" << endl;
+    cout << "1. Transpose a Matrix" << endl;
+    cout << "2. Add Two Matrices" << endl;
+    cout << "3. Multiply Two
